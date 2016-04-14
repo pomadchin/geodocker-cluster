@@ -16,7 +16,13 @@ ENV JAVA_GDAL_DIR /usr/lib/jni/
 RUN apt-get update && apt-get upgrade -y && \
     apt-get install -y maven llvm-gcc build-essential zlib1g-dev make cmake pkg-config libssl-dev \ 
     automake autoconf curl zip unzip git imagemagick gdal-bin python-gdal python python-setuptools \
-    python-numpy python-pip python-dev python-scipy libgdal-dev libgdal1-dev libgdal-java geotiff-bin 
+    python-numpy python-pip python-dev python-scipy libgdal-dev libgdal1-dev libgdal-java geotiff-bin \
+    language-pack-en && \
+    locale-gen en_US && \
+    update-locale LANG=en_US.UTF-8 LC_CTYPE=en_US.UTF-8
+
+ENV LANG en_US.UTF-8
+ENV LC_CTYPE en_US.UTF-8
 
 # Add oracle java repository
 RUN apt-get -y install software-properties-common
